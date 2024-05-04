@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flat Design</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>Flat Design Showcase</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#bedroom">Bedroom</a></li>
+      <li><a href="#bathroom">Bathroom</a></li>
+      <li><a href="#kitchen">Kitchen</a></li>
+      <li><a href="#reception">Reception</a></li>
+      <li><a href="#children-room">Children Room</a></li>
+      <li><a href="#info">Flat Info</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="bedroom">
+      <h2>Bedroom</h2>
+      <div class="photo-gallery">
+        <a href="Bedroom/bedroom1.jpeg"><img src="Bedroom/bedroom1.jpeg" alt="Bedroom"></a>
+        <a href="Bedroom/bedroom2.jpeg"><img src="Bedroom/bedroom2.jpeg" alt="Bedroom"></a>
+        <a href="Bedroom/bedroom3.jpeg"><img src="Bedroom/bedroom3.jpeg" alt="Bedroom"></a>
+        <a href="Bedroom/bedroom4.jpeg"><img src="Bedroom/bedroom4.jpeg" alt="Bedroom"></a>
+        <a href="Bedroom/bedroom5.jpeg"><img src="Bedroom/bedroom5.jpeg" alt="Bedroom"></a>
+        <a href="Bedroom/bedroom6.jpeg"><img src="Bedroom/bedroom6.jpeg" alt="Bedroom"></a>
+      </div>
+    </section>
+    <section id="bathroom">
+        <h2>Bathroom</h2>
+        <div class="photo-gallery">
+            <img src="Bathroom/bathroom1.jpeg" alt="Bathroom">
+            <img src="Bathroom/bathroom2.jpeg" alt="Bathroom">
+            <img src="Bathroom/bathroom3.jpeg" alt="Bathroom">
+        </div>
+    </section>
+    <section id="kitchen">
+        <h2>Kitchen</h2>
+        <div class="photo-gallery">
+            <img src="Kitchen/kitchen1.jpeg" alt="Kitchen">
+            <img src="Kitchen/kitchen2.jpeg" alt="Kitchen">
+            <img src="Kitchen/kitchen3.jpeg" alt="Kitchen">
+            <img src="Kitchen/kitchen4.jpeg" alt="Kitchen">
+            <img src="Kitchen/kitchen5.jpeg" alt="Kitchen">
+            <img src="Kitchen/kitchen6.jpeg" alt="Kitchen">
+        </div>
+    </section>
+    <section id="reception">
+        <h2>Reception</h2>
+        <div class="photo-gallery">
+            <img src="Reception/reception1.jpeg" alt="Reception">
+            <img src="Reception/reception2.jpeg" alt="Reception">
+            <img src="Reception/reception3.jpeg" alt="Reception">
+            <img src="Reception/reception4.jpeg" alt="Reception">   
+            <img src="Reception/reception5.jpeg" alt="Reception">
+            <img src="Reception/reception6.jpeg" alt="Reception">
+        </div>
+    </section>
+    <section id="children-room">
+        <h2>Children Room</h2>
+        <div class="photo-gallery">
+            <img src="Childrenroom/childrenroom1.jpeg" alt="Children Room">
+            <img src="Childrenroom/childrenroom2.jpeg" alt="Children Room">
+            <img src="Childrenroom/childrenroom3.jpeg" alt="Children Room">
+            <img src="Childrenroom/childrenroom4.jpeg" alt="Children Room">
+            <img src="Childrenroom/childrenroom5.jpeg" alt="Children Room">
+            <img src="Childrenroom/childrenroom6.jpeg" alt="Children Room">
+        </div>
+    </section>
+    <section id="living-room">
+        <h2>Living Room</h2>
+        <div class="photo-gallery">
+            <img src="Livingroom/livingroom1.jpeg" alt="Living Room">
+            <img src="Livingroom/livingroom2.jpeg" alt="Living Room">
+            <img src="Livingroom/livingroom3.jpeg" alt="Living Room">
+            <img src="Livingroom/livingroom4.jpeg" alt="Living Room">
+            <img src="Livingroom/livingroom5.jpeg" alt="Living Room">
+            <img src="Livingroom/livingroom6.jpeg" alt="Living Room">
+            <img src="Livingroom/livingroom7.jpeg" alt="Living Room">
+            <img src="Livingroom/livingroom8.jpeg" alt="Living Room">
+        </div>
+    </section>  
+
+    <!-- Similar sections for other rooms -->
+
+    <section id="info">
+      <h2>Flat Information</h2>
+      <p>Provide information about the flat here.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Your Flat Design</p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('nav ul li a');
+    
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent default behavior of anchor tags
+    
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+    
+                // Hide all sections
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.display = 'none';
+                });
+    
+                // Show the target section
+                targetSection.style.display = 'block';
+    
+                // If the target section contains images, show them
+                const images = targetSection.querySelectorAll('.photo-gallery img');
+                images.forEach(img => {
+                    img.style.display = 'block';
+                });
+            });
+        });
+    
+        // Show images in the first section by default
+        const firstSectionImages = document.querySelectorAll('section')[0].querySelectorAll('.photo-gallery img');
+        firstSectionImages.forEach(img => {
+            img.style.display = 'block';
+        });
+    
+        const images = document.querySelectorAll('.photo-gallery img');
+    
+        images.forEach(image => {
+            image.addEventListener('click', function() {
+                const imageUrl = this.getAttribute('src');
+                const lightbox = document.createElement('div');
+                lightbox.classList.add('lightbox');
+                lightbox.innerHTML = `
+                    <div class="lightbox-content">
+                        <img src="${imageUrl}" alt="Enlarge">
+                        <button class="close-btn">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(lightbox);
+    
+                const closeBtn = lightbox.querySelector('.close-btn');
+                closeBtn.addEventListener('click', function() {
+                    document.body.removeChild(lightbox);
+                });
+            });
+        });
+    });
+    </script>
+    
+    
+    
+</body>
+</html>
