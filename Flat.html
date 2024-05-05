@@ -24,15 +24,22 @@
   </nav>
 
   <main>
+    <section id="info">
+        <h2>Flat Information</h2>
+        <p>This Flat is located in 6-October Gardens with Area 130 m2 
+          and is a 4 bedroom flat with a living room, kitchen, bathroom and reception
+          you can visit it form <a href="https://maps.app.goo.gl/NeorE7zyi7Qt4U7T6">this location </a> 
+      </p>
+      </section>
     <section id="bedroom">
       <h2>Bedroom</h2>
       <div class="photo-gallery">
-        <a href="Bedroom/bedroom1.jpeg"><img src="Bedroom/bedroom1.jpeg" alt="Bedroom"></a>
-        <a href="Bedroom/bedroom2.jpeg"><img src="Bedroom/bedroom2.jpeg" alt="Bedroom"></a>
-        <a href="Bedroom/bedroom3.jpeg"><img src="Bedroom/bedroom3.jpeg" alt="Bedroom"></a>
-        <a href="Bedroom/bedroom4.jpeg"><img src="Bedroom/bedroom4.jpeg" alt="Bedroom"></a>
-        <a href="Bedroom/bedroom5.jpeg"><img src="Bedroom/bedroom5.jpeg" alt="Bedroom"></a>
-        <a href="Bedroom/bedroom6.jpeg"><img src="Bedroom/bedroom6.jpeg" alt="Bedroom"></a>
+        <img src="Bedroom/bedroom1.jpeg" alt="Bedroom">
+        <img src="Bedroom/bedroom2.jpeg" alt="Bedroom">
+        <img src="Bedroom/bedroom3.jpeg" alt="Bedroom">
+        <img src="Bedroom/bedroom4.jpeg" alt="Bedroom">
+        <img src="Bedroom/bedroom5.jpeg" alt="Bedroom">
+        <img src="Bedroom/bedroom6.jpeg" alt="Bedroom">
       </div>
     </section>
     <section id="bathroom">
@@ -92,70 +99,48 @@
 
     <!-- Similar sections for other rooms -->
 
-    <section id="info">
-      <h2>Flat Information</h2>
-      <p>Provide information about the flat here.</p>
-    </section>
   </main>
 
   <footer>
-    <p>&copy; 2024 Your Flat Design</p>
+    <p>&copy; 2024 Flat Design</p>
   </footer>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const links = document.querySelectorAll('nav ul li a');
-    
-        links.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent default behavior of anchor tags
-    
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-    
-                // Hide all sections
-                document.querySelectorAll('section').forEach(section => {
-                    section.style.display = 'none';
-                });
-    
-                // Show the target section
-                targetSection.style.display = 'block';
-    
-                // If the target section contains images, show them
-                const images = targetSection.querySelectorAll('.photo-gallery img');
-                images.forEach(img => {
-                    img.style.display = 'block';
-                });
+document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('nav ul li a');
+
+
+    const images = document.querySelectorAll('.photo-gallery img');
+    images.forEach(image => {
+        image.addEventListener('click', function() {
+            const imageUrl = this.getAttribute('src');
+            const lightbox = document.createElement('div');
+            lightbox.classList.add('lightbox');
+            lightbox.innerHTML = `
+                <div class="lightbox-content">
+                    <img src="${imageUrl}" alt="Enlarge">
+                    <button class="close-btn">Close</button>
+                </div>
+            `;
+            document.body.appendChild(lightbox);
+
+            const closeBtn = lightbox.querySelector('.close-btn');
+            closeBtn.addEventListener('click', function() {
+                document.body.removeChild(lightbox);
             });
-        });
-    
-        // Show images in the first section by default
-        const firstSectionImages = document.querySelectorAll('section')[0].querySelectorAll('.photo-gallery img');
-        firstSectionImages.forEach(img => {
-            img.style.display = 'block';
-        });
-    
-        const images = document.querySelectorAll('.photo-gallery img');
-    
-        images.forEach(image => {
-            image.addEventListener('click', function() {
-                const imageUrl = this.getAttribute('src');
-                const lightbox = document.createElement('div');
-                lightbox.classList.add('lightbox');
-                lightbox.innerHTML = `
-                    <div class="lightbox-content">
-                        <img src="${imageUrl}" alt="Enlarge">
-                        <button class="close-btn">Close</button>
-                    </div>
-                `;
-                document.body.appendChild(lightbox);
-    
-                const closeBtn = lightbox.querySelector('.close-btn');
-                closeBtn.addEventListener('click', function() {
+
+            // Add event listener to close lightbox when ESC key is pressed
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
                     document.body.removeChild(lightbox);
-                });
+                }
             });
         });
+   
+
     });
+
+});
+
     </script>
     
     
