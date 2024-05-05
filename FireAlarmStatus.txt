@@ -1,8 +1,0 @@
-Temp msgs need to call LCD display instantly
-stuck in view number of zone no timeout 
-we need to test normal senario with valid number// Done
-check this stucking  // Done
-we need to change decoding to be on fixed data length not variable 
-update and test time out in changing pass view and tested // Done 
-we need to enable timeout in viewing zones
-we need to fix display for all zones it is duplicated to 4 only for both sides
